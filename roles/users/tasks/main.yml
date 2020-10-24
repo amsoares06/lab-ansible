@@ -1,0 +1,40 @@
+---
+# tasks file for roles/users
+
+- name: create users
+  user:
+    name: "{{ item.key }}"
+    uid: "{{ item.value.uid }}"
+    home: "{{ item.value.home }}"
+    comment: "{{ item.value.comment }}"
+    state: "{{ item.value.state }}"
+    remove: yes
+  with_dict: "{{ users }}"
+
+- name: set authorized_keys
+  ansible.posix.authorized_key:
+    user:  "{{ item.key }}"
+    state: "{{ item.value.state }}"
+    key: "{{ item.value.sshkey }}"
+  with_dict: "{{ users }}"
+  when: item.value.state == "present" and item.value.sshkey is defined
+
+- name: add users to sudoers
+  lineinfile:
+    path: "/etc/sudoers.d/{{ item.key }}"
+    line: "{{ item.key }}        ALL=(ALL)       NOPASSWD: ALL"
+    create: yes
+    mode: 0440
+    owner: root
+    group: root
+  with_dict: "{{ users }}"
+  when: item.value.sudo
+
+# Still need to figure out a better way to do this
+# Example: remove when item.value.sudo is undefined
+- name: remove users from sudoers
+  file:
+    path: "/etc/sudoers.d/{{ item.key }}"
+    state: absent
+  with_dict: "{{ users }}"
+  when: not item.value.sudo

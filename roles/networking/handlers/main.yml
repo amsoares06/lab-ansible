@@ -1,0 +1,5 @@
+---
+# handlers file for roles/networking
+
+- name: load sysctl settings
+  command: sysctl -p

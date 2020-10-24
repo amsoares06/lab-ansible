@@ -1,0 +1,12 @@
+# setup.yml
+
+---
+  - hosts: all
+    become: true
+    roles:
+      - ssh
+      - motd
+      - dns
+      - networking
+      - users
+      - ntp

@@ -1,0 +1,10 @@
+---
+# tasks file for roles/motd
+
+- name: set motd
+  template:
+    src: ../templates/motd
+    dest: /etc/motd
+    mode: 0644
+    owner: root
+    group: root

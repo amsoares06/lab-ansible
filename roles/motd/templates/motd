@@ -1,0 +1,10 @@
+
+    Welcome to:      {{ ansible_fqdn }}: {{ ansible_default_ipv4.address }}
+    Running:         {{ facter_kernel }} {{ facter_os.name }} {{ facter_os.release.major }}.{{ facter_os.release.major }} {{ ansible_kernel }}
+    On a:            {{ facter_dmi.product.name }}
+
+    Hardware:
+      CPU:  {{ ansible_processor_count }}x {{ ansible_processor[2] }}
+      MEM:  {{ facter_memory.system.total }}
+      SWAP: {{ facter_memory.swap.total }}
+

@@ -1,0 +1,11 @@
+---
+# tasks file for roles/ssh
+
+- name: copy sshd_config
+  copy:
+    src: ../files/sshd_config
+    dest: /etc/ssh/sshd_config
+    mode: 0600
+    owner: root
+    group: root
+  notify: restart sshd

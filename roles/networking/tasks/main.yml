@@ -1,0 +1,11 @@
+---
+# tasks file for roles/networking
+
+- name: disable IPv6
+  blockinfile:
+    path: /etc/sysctl.conf
+    block: |
+      net.ipv6.conf.all.disable_ipv6 = 1
+      net.ipv6.conf.default.disable_ipv6 = 1
+  when: disable_ipv6
+  notify: load sysctl settings

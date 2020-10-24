@@ -1,0 +1,5 @@
+---
+# vars file for roles/dns
+
+dnsserver: "192.168.15.88"
+search: "localdomain.lan"

@@ -1,0 +1,16 @@
+---
+# tasks file for roles/ntp
+
+- name: install ntp
+  yum:
+    name: ntp
+    state: present
+
+- name: config ntpd
+  copy:
+    src: ../files/ntpd.conf
+    dest: /etc/ntpd.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart ntpd
