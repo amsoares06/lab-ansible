@@ -9,4 +9,6 @@
       - dns
       - networking
       - users
-      - ntp
+      #- ntp
+    vars_files:
+      - vars_files/default.yml
