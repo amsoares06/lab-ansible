@@ -1,0 +1,22 @@
+# setup.yml
+
+---
+- name: test playbook
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Print all available facts
+    ansible.builtin.debug:
+      #var: ansible_system
+      msg:
+        - "Welcome to:      {{ ansible_fqdn }}: {{ ansible_default_ipv4.address }}"
+        - "Running:         {{ ansible_system }} {{ ansible_distribution }} {{ ansible_distribution_version }} / {{ ansible_kernel }}"
+        - "On a:            {{ ansible_product_name }}"
+        - " "
+        - "Hardware:"
+        - "  CPU:  {{ ansible_processor_count }}x {{ ansible_processor[2] }}"
+        - "  MEM:  {{ ansible_memtotal_mb }}"
+        - "  SWAP: {{ ansible_swaptotal_mb }}"
+
+

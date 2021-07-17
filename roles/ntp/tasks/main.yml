@@ -3,7 +3,7 @@
 
 - name: install ntp
   yum:
-    name: ntp
+    name: ntpd
     state: present
 
 - name: config ntpd

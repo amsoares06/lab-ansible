@@ -1,3 +1,0 @@
----
-# vars file for roles/networking
-disable_ipv6: true
