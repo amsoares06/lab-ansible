@@ -11,6 +11,13 @@
     remove: yes
   with_dict: "{{ users }}"
 
+- name: set users password
+  user:
+    name: "{{ item.key }}"
+    password: "{{ item.value | password_hash('sha512') }}"
+  with_dict: "{{ users_passwords }}"
+  no_log: true
+
 - name: set authorized_keys
   ansible.posix.authorized_key:
     user:  "{{ item.key }}"
