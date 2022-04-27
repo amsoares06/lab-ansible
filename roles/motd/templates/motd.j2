@@ -9,5 +9,4 @@ echo "
       SWAP:    {{ ansible_swaptotal_mb }} MB"
 echo "      USEDMEM: $(free -m | grep Mem | awk '{print $3}') Mb
       UPTIME:  $(uptime -p | cut -c4-)
-      LOAD:   $(uptime | cut -d ':' -f 5)
 "
