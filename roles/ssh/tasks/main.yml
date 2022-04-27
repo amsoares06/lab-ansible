@@ -1,6 +1,11 @@
 ---
-# tasks file for roles/ssh
 
+- name: add warning in file
+  ansible.builtin.lineinfile:
+    line: "# Managed by Ansible - some changes can be lost"
+    path: /etc/ssh/sshd_config
+    insertbefore: BOF
+    state: present
 
 - name: block root login
   ansible.builtin.lineinfile:
