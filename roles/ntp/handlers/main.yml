@@ -1,8 +1,0 @@
----
-# handlers file for roles/ntp
-
-- name: restart ntpd
-  service:
-    name: ntpd
-    state: restarted
-    enabled: yes

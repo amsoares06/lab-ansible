@@ -1,0 +1,14 @@
+---
+
+- name: install chrony
+  ansible.builtin.dnf:
+    name: chrony
+    state: present
+
+- name: configure ntp pool
+  ansible.builtin.lineinfile:
+    path: /etc/chrony.conf
+    regexp: "^pool(\\s)"
+    line: "pool pool.ntp.org iburst"
+    state: present
+  notify: restart chronyd
