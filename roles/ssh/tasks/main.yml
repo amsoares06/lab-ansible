@@ -25,3 +25,11 @@
     line: "Protocol 2"
     state: present
   notify: restart sshd
+
+- name: enable password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication(\\s)"
+    line: "PasswordAuthentication yes"
+    state: present
+  notify: restart sshd
