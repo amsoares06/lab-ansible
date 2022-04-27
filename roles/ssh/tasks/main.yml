@@ -1,11 +1,27 @@
 ---
 # tasks file for roles/ssh
 
-- name: copy sshd_config
-  copy:
-    src: ../files/sshd_config
-    dest: /etc/ssh/sshd_config
-    mode: 0600
-    owner: root
-    group: root
+
+- name: block root login
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin(\\s)"
+    line: "PermitRootLogin no"
+    state: present
+  notify: restart sshd
+
+- name: configured allowed users
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^AllowUsers(\\s)"
+    line: "AllowUsers packer amsoares"
+    state: present
+  notify: restart sshd
+
+- name: set protocol to 2
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^Protocol(\\s)"
+    line: "Protocol 2"
+    state: present
   notify: restart sshd
