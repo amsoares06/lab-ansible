@@ -1,5 +1,4 @@
 ---
-# tasks file for roles/users
 
 - name: create users
   ansible.builtin.user:
