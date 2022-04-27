@@ -4,7 +4,7 @@ dnsservers: [ "192.168.15.25", "192.168.15.35" ]
 searchdomain: "localdomain.lan"
 
 # networking
-disable_ipv6: true
+disable_ipv6: false
 
 # Users
 users:
