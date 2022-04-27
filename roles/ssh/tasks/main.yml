@@ -1,11 +1,40 @@
 ---
-# tasks file for roles/ssh
 
-- name: copy sshd_config
-  copy:
-    src: ../files/sshd_config
-    dest: /etc/ssh/sshd_config
-    mode: 0600
-    owner: root
-    group: root
+- name: add warning in file
+  ansible.builtin.lineinfile:
+    line: "# Managed by Ansible - some changes can be lost"
+    path: /etc/ssh/sshd_config
+    insertbefore: BOF
+    state: present
+
+- name: block root login
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin(\\s)"
+    line: "PermitRootLogin no"
+    state: present
+  notify: restart sshd
+
+- name: configured allowed users
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^AllowUsers(\\s)"
+    line: "AllowUsers packer amsoares"
+    state: present
+  notify: restart sshd
+
+- name: set protocol to 2
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^Protocol(\\s)"
+    line: "Protocol 2"
+    state: present
+  notify: restart sshd
+
+- name: enable password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication(\\s)"
+    line: "PasswordAuthentication yes"
+    state: present
   notify: restart sshd

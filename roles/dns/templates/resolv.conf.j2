@@ -1,0 +1,5 @@
+# Managed by Ansible
+{% for server in dnsservers %}
+nameserver {{ server }}
+{% endfor %}
+search {{ searchdomain }}

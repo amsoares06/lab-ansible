@@ -1,9 +1,8 @@
 ---
-# tasks file for roles/dns
 
 - name: configure dns
-  template:
-    src: ../templates/resolv.conf
+  ansible.builtin.template:
+    src: resolv.conf.j2
     dest: /etc/resolv.conf
     mode: 0644
     owner: root

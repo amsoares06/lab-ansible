@@ -9,6 +9,4 @@
       - dns
       - networking
       - users
-      #- ntp
-    vars_files:
-      - vars_files/default.yml
+      - chrony

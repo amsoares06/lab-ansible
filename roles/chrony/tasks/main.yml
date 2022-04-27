@@ -1,0 +1,21 @@
+---
+
+- name: install chrony
+  ansible.builtin.dnf:
+    name: chrony
+    state: present
+
+- name: add warning in file
+  ansible.builtin.lineinfile:
+    line: "# Managed by Ansible - some changes can be lost"
+    path: /etc/chrony.conf
+    insertbefore: BOF
+    state: present
+
+- name: configure ntp pool
+  ansible.builtin.lineinfile:
+    path: /etc/chrony.conf
+    regexp: "^pool(\\s)"
+    line: "pool pool.ntp.org iburst"
+    state: present
+  notify: restart chronyd

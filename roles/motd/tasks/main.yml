@@ -1,10 +1,9 @@
 ---
-# tasks file for roles/motd
 
 - name: set motd
-  template:
-    src: ../templates/motd
-    dest: /etc/motd
+  ansible.builtin.template:
+    src: motd.j2
+    dest: /etc/profile.d/motd.sh
     mode: 0644
     owner: root
     group: root

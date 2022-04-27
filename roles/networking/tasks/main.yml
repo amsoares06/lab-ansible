@@ -1,5 +1,4 @@
 ---
-# tasks file for roles/networking
 
 - name: disable IPv6
   blockinfile:
