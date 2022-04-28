@@ -1,12 +1,17 @@
-# setup.yml
-
 ---
-  - hosts: all
-    become: true
-    roles:
-      - ssh
-      - motd
-      - dns
-      - networking
-      - users
-      - chrony
+# base
+- hosts: all
+  become: yes
+  roles:
+    - ssh
+    - motd
+    - dns
+    - networking
+    - users
+    - chrony
+
+# docker
+- hosts: docker
+  become: yes
+  roles:
+    - docker

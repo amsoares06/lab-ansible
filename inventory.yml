@@ -10,7 +10,7 @@ all:
         testvm02:
           ansible_host: 192.168.15.92
 
-    test3:
+    docker:
       hosts:
         testvm03:
           ansible_host: 192.168.15.93
