@@ -16,12 +16,26 @@
   notify: restart sshd
 
 - name: configured allowed users
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: "^AllowUsers(\\s)"
-    line: "AllowUsers packer amsoares"
-    state: present
-  notify: restart sshd
+  block:
+    # initialize a new string called 'allowline'
+    - name: initialize string
+      ansible.builtin.set_fact:
+        allowline: AllowUsers
+
+    # iterate through 'users' dictionary and append users to 'allowline'
+    - name: append users to line
+      ansible.builtin.set_fact:
+        allowline: "{{ allowline }} {{ item.key }}"
+      with_dict: "{{ users }}"
+
+    # add 'allowline' contents to /etc/ssh/sshd_configs
+    - name: add allowed users line to file
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^AllowUsers(\\s)"
+        line: "{{ allowline }}"
+        state: present
+      notify: restart sshd
 
 - name: set protocol to 2
   ansible.builtin.lineinfile:

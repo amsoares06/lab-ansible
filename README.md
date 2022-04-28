@@ -38,7 +38,7 @@ AllowUsers packer amsoares
 Protocol 2
 PasswordAuthentication yes
 ```
-TO DO: read the `users` hash and populate `AllowUsers` to make it dynamic
+**NOTE:** `AllowUsers` settings come from the `user` dictionary
 
 ### users
 - additional users to create
