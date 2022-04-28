@@ -21,9 +21,10 @@
   ansible.posix.authorized_key:
     user:  "{{ item.key }}"
     state: "{{ item.value.state }}"
-    key: "{{ item.value.sshkey }}"
+    key: "{{ item.value.sshkeys | join('\n') }}"
+    exclusive: yes
   with_dict: "{{ users }}"
-  when: item.value.state == "present" and item.value.sshkey is defined
+  when: item.value.state == "present" and item.value.sshkeys is defined
 
 - name: add users to sudoers
   lineinfile:

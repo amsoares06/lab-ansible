@@ -49,7 +49,9 @@ users:
     comment: "User 1 description"
     home: "/home/user1"
     uid: 1001
-    sshkey: ssh-rsa (...) user1@host
+    sshkeys:
+      - ssh-rsa (...) user1@host-A
+      - ssh-rsa (...) user1@host-B
     state: present
     sudo: true
 ```
@@ -59,7 +61,7 @@ key | string | username | user1
 comment | string | description (gecos) | User 1 description
 home | string | homedir | /home/user1
 uid | number | uid | 1001
-sshkey | string | public ssh key to add | "ssh-rsa (...) user1@host"
+sshkeys | list of strings | public ssh keys to add | "ssh-rsa (...) user1@host"
 state | string | state of the user, setting to `absent` will remove the user | `absent` or `present`
 sudo | boolean | if set to `true` configures sudo | `true` or `false`
 
