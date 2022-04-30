@@ -1,0 +1,6 @@
+---
+- name: install pkgs
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ pkgs2install }}"
