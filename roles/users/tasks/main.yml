@@ -22,7 +22,7 @@
     user:  "{{ item.key }}"
     state: "{{ item.value.state }}"
     key: "{{ item.value.sshkeys | join('\n') }}"
-    exclusive: yes
+    exclusive: no
   with_dict: "{{ users }}"
   when: item.value.state == "present" and item.value.sshkeys is defined
 
