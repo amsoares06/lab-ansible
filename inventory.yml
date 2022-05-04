@@ -3,14 +3,14 @@
 
 all:
   children:
-    #test12:
-    #  hosts:
-    #    testvm01:
-    #      ansible_host: 192.168.15.91
+    test:
+      hosts:
+        docker-test:
+          ansible_host: 192.168.15.20
     #    testvm02:
     #      ansible_host: 192.168.15.92
 
     docker:
       hosts:
         docker.localdomain.lan:
-          ansible_host: 192.168.15.25
+          ansible_host: docker.localdomain.lan

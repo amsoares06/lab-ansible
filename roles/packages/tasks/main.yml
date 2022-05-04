@@ -4,3 +4,4 @@
     name: "{{ item }}"
     state: present
   loop: "{{ pkgs2install }}"
+  when: pkgs2install is defined
