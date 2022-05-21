@@ -2,15 +2,16 @@
 # reference: https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 
 all:
+  hosts:
+    reverse-proxy:
+      ansible_host: 192.168.15.50
   children:
-    test:
-      hosts:
-        docker-test:
-          ansible_host: 192.168.15.20
-    #    testvm02:
-    #      ansible_host: 192.168.15.92
-
     docker:
       hosts:
         docker.localdomain.lan:
-          ansible_host: docker.localdomain.lan
+    webservers:
+      hosts:
+        web01:
+          ansible_host: 192.168.15.51
+        web02:
+          ansible_host: 192.168.15.52
