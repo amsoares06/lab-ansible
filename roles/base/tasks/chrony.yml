@@ -1,5 +1,4 @@
 ---
-
 - name: install chrony
   ansible.builtin.dnf:
     name: chrony

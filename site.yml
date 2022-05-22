@@ -3,13 +3,7 @@
 - hosts: all
   become: yes
   roles:
-    - packages
-    - ssh
-    - motd
-    - dns
-    - networking
-    - users
-    - chrony
+    - base
 
 # docker
 - hosts: docker

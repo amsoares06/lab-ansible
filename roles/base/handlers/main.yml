@@ -1,0 +1,4 @@
+---
+- import_tasks: chrony.yml
+- import_tasks: networking.yml
+- import_tasks: ssh.yml

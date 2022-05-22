@@ -1,5 +1,4 @@
 ---
-
 - name: create users
   ansible.builtin.user:
     name: "{{ item.key }}"

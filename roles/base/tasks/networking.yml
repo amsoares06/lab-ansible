@@ -1,5 +1,4 @@
 ---
-
 - name: disable IPv6
   blockinfile:
     path: /etc/sysctl.conf

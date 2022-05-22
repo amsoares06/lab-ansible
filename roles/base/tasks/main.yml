@@ -1,0 +1,8 @@
+---
+- import_tasks: dns.yml
+- import_tasks: chrony.yml
+- import_tasks: packages.yml
+- import_tasks: networking.yml
+- import_tasks: users.yml
+- import_tasks: ssh.yml
+- import_tasks: motd.yml

@@ -1,9 +1,8 @@
 ---
-
-- name: set motd
+- name: configure dns
   ansible.builtin.template:
-    src: motd.j2
-    dest: /etc/profile.d/motd.sh
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
     mode: 0644
     owner: root
     group: root
