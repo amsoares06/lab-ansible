@@ -1,0 +1,14 @@
+---
+reverse_proxy_conf:
+  #- { servername: "proxmox.localdomain.lan", address: "https://proxmox01.localdomain.lan:8006/" } # 500 error
+  - { servername: "dns01.localdomain.lan", address: "http://docker.localdomain.lan:8080/admin/" }
+  - { servername: "dns02.localdomain.lan", address: "http://rpi-zero.localdomain.lan/admin/" }
+  #- { servername: "portainer01.localdomain.lan", address: "https://docker.localdomain.lan:9443/" } # uses https
+  #- { servername: "portainer02.localdomain.lan", address: "https://rpi-nas.localdomain.lan:9443/" } # uses https
+  # - { servername: "transmission.localdomain.lan", address: "https://docker.localdomain.lan:9091/" } # 500 error
+  - { servername: "movies.localdomain.lan", address: "http://docker.localdomain.lan:7878/" }
+  - { servername: "tvshows.localdomain.lan", address: "http://docker.localdomain.lan:8989/" }
+  - { servername: "subtitles.localdomain.lan", address: "http://docker.localdomain.lan:6767/" }
+  - { servername: "jackett.localdomain.lan", address: "http://docker.localdomain.lan:9117/" }
+  - { servername: "heimdall.localdomain.lan", address: "http://docker.localdomain.lan:8088/" }
+  - { servername: "home.localdomain.lan", address: "http://docker.localdomain.lan:8088/" }

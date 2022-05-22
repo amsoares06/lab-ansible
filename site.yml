@@ -6,7 +6,13 @@
     - base
 
 # docker
-- hosts: docker
+- hosts: dockerhosts
   become: yes
   roles:
     - docker
+
+# reverse proxy
+- hosts: reverse-proxy.localdomain.lan
+  become: yes
+  roles:
+    - reverse-proxy

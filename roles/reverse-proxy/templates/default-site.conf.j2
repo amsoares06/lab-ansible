@@ -1,0 +1,11 @@
+# Managed by Ansible
+
+{% for entry in reverse_proxy_conf %}
+<VirtualHost *:80>
+    ServerName {{ entry.servername }}
+    ProxyPreserveHost On
+    ProxyPass / {{ entry.address }}
+    ProxyPassReverse / {{ entry.address }}
+</VirtualHost>
+
+{% endfor %}

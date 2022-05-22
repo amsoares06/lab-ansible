@@ -1,0 +1,22 @@
+---
+- name: install httpd package
+  ansible.builtin.dnf:
+    name: httpd
+    state: present
+  notify: restart httpd
+
+- name: config file
+  ansible.builtin.template:
+    src: default-site.conf.j2
+    dest: /etc/httpd/conf.d/default-site.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart httpd
+
+- name: config selinux to allow apache to make outbound connections
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+

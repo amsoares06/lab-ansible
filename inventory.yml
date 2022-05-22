@@ -3,15 +3,8 @@
 
 all:
   hosts:
-    reverse-proxy:
-      ansible_host: 192.168.15.50
+    reverse-proxy.localdomain.lan:
   children:
-    docker:
+    dockerhosts:
       hosts:
         docker.localdomain.lan:
-    webservers:
-      hosts:
-        web01:
-          ansible_host: 192.168.15.51
-        web02:
-          ansible_host: 192.168.15.52
