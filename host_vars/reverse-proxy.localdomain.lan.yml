@@ -6,6 +6,7 @@ reverse_proxy_conf:
   #- { servername: "portainer01.localdomain.lan", address: "https://docker.localdomain.lan:9443/" } # uses https
   #- { servername: "portainer02.localdomain.lan", address: "https://rpi-nas.localdomain.lan:9443/" } # uses https
   - { servername: "transmission.localdomain.lan", address: "http://docker.localdomain.lan:9091/" }
+  - { servername: "movies.localdomain.lan", address: "http://docker.localdomain.lan:7878/" }
   - { servername: "tvshows.localdomain.lan", address: "http://docker.localdomain.lan:8989/" }
   - { servername: "subtitles.localdomain.lan", address: "http://docker.localdomain.lan:6767/" }
   - { servername: "jackett.localdomain.lan", address: "http://docker.localdomain.lan:9117/" }
