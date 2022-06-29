@@ -6,7 +6,7 @@ echo "
     On a:       {{ ansible_product_name }}
 
     Hardware:
-      CPU:     {{ ansible_processor_cores }}x {{ ansible_processor[2] }}
+      CPU:     {{ ansible_processor_vcpus }}x {{ ansible_processor[2] }}
       MEM:     {{ ansible_memtotal_mb }} MB
       SWAP:    {{ ansible_swaptotal_mb }} MB"
 echo "      USEDMEM: $(free -m | grep Mem | awk '{print $3}') Mb
