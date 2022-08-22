@@ -79,3 +79,8 @@ users_passwords:
           6532
 ```
 
+### run a command ad-hoc on multiple servers
+```
+$ ansible all -a "uname -a"
+$ ansible kubernetes -a "dnf update -y" --become
+```
