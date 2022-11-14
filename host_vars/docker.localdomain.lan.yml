@@ -1,3 +1,4 @@
 ---
 pkgs2install:
   - git
+  - nfs-utils
