@@ -1,17 +1,20 @@
 ---
 # base
+# apply to all
 - hosts: all
   become: yes
   roles:
     - base
 
 # docker
+# apply 'docker' role on 'dockerhosts' hostgroup
 - hosts: dockerhosts
   become: yes
   roles:
     - docker
 
 # reverse proxy
+# apply to vm 'reverse-proxy'
 - hosts: reverse-proxy.localdomain.lan
   become: yes
   roles:
