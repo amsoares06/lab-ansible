@@ -1,0 +1,4 @@
+---
+pkgs2install:
+  - git
+
