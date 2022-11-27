@@ -1,4 +1,14 @@
 ---
+- name: Add Hashicorp repository
+  ansible.builtin.yum_repository:
+    name: hashicorp
+    description: Hashicorp Stable - $basearch
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    gpgcheck: true
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+  when: (pkgs2install is defined) and
+        (("terraform" in pkgs2install) or ("packer" in pkgs2install))
+
 - name: install pkgs
   ansible.builtin.dnf:
     name: "{{ item }}"
