@@ -1,0 +1,11 @@
+---
+pkgs2install:
+  - git
+  - epel-release
+  - ansible
+  - packer
+  - terraform
+
+# Users to install and configure Powerlevel10k
+powerlevel10k_user:
+  - amsoares

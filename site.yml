@@ -6,6 +6,13 @@
   roles:
     - base
 
+# bridge
+- hosts: dev.localdomain.lan
+  become: yes
+  roles:
+    - dev
+  tags: dev
+
 # docker
 # apply 'docker' role on 'dockerhosts' hostgroup
 - hosts: dockerhosts

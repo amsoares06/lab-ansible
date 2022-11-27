@@ -1,0 +1,6 @@
+---
+# Dependencies for Oh Powerlevel10k
+powerlevel10k_dependencies:
+  - git
+  - zsh
+  - tar

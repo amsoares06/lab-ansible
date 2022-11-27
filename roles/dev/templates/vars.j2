@@ -1,0 +1,18 @@
+# dev vars
+# PROXMOX password
+PROXMOXPW="{{ proxmox_pw }}"
+PRIVKEY=$(cat ~/.ssh/id_rsa)
+PACKERPW="{{ packer_pw}}"
+
+# PACKER
+export PKR_VAR_password=${PROXMOXPW}
+export PKR_VAR_ssh_password=${PACKERPW}
+
+# TERRAFORM
+export TF_VAR_pm_password=${PROXMOXPW}
+export TF_VAR_private_key=${PRIVKEY}
+
+# UNSET
+unset PROXMOXPW
+unset PRIVKEY
+unset PACKERPW

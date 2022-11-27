@@ -1,0 +1,73 @@
+---
+# Install ZSH, Powerlevel10k
+
+- name: intall zsh and powerlevel10k
+  block:
+
+    - name: install dependencies
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ powerlevel10k_dependencies }}"
+      when: powerlevel10k_dependencies is defined
+
+    # Manual Install Powerlevel10k - theme for zsh
+    # https://github.com/romkatv/powerlevel10k
+    - name: install Powerlevel 10K
+      shell: |
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+        echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+        id
+      become: yes
+      become_user: '{{ item }}'
+      args:
+        chdir: '/home/{{ item }}'
+        creates: '/home/{{ item }}/powerlevel10k'
+      loop: "{{ powerlevel10k_user }}"
+
+    # user profile
+    - name: copy .zshrc
+      ansible.builtin.copy:
+        src: zshrc
+        dest: '/home/{{ item }}/.zshrc'
+        owner: '{{ item }}'
+        group: '{{ item }}'
+        mode: '0664'
+      loop: "{{ powerlevel10k_user }}"
+
+    # p10k configuration
+    - name: copy .p10k.zsh
+      ansible.builtin.copy:
+        src: p10k.zsh
+        dest: '/home/{{ item }}/.p10k.zsh'
+        owner: '{{ item }}'
+        group: '{{ item }}'
+        mode: '0664'
+      loop: "{{ powerlevel10k_user }}"
+
+    # change default shell from users to zsh
+    - name: change shell to zsh
+      ansible.builtin.user:
+        name: '{{ item }}'
+        shell: /bin/zsh
+      loop: "{{ powerlevel10k_user }}"
+
+    # copy .vars file
+    - name: copy .vars
+      ansible.builtin.template:
+        src: vars.j2
+        dest: '/home/{{ item }}/.vars'
+        owner: '{{ item }}'
+        group: '{{ item }}'
+        mode: '0600'
+      loop: "{{ powerlevel10k_user }}"
+
+    # generate ssh keypair
+    - name: generate sshkey
+      command: ssh-keygen -b 2048 -t rsa -f /home/{{ item }}/.ssh/id_rsa -q -N ""
+      become: yes
+      become_user: '{{ item }}'
+      args:
+        creates: '/home/{{ item }}/.ssh/id_rsa'
+      loop: "{{ powerlevel10k_user }}"
+  when: powerlevel10k_user is defined
