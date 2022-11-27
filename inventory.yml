@@ -3,13 +3,14 @@
 
 all:
   hosts:
+    dev.localdomain.lan:
     reverse-proxy.localdomain.lan:
   children:
     dockerhosts:
       hosts:
         docker.localdomain.lan:
-    kubernetes:
-      hosts:
-        kube00.localdomain.lan:
-        kube01.localdomain.lan:
-        kube02.localdomain.lan:
+    # kubernetes:
+    #   hosts:
+    #     kube00.localdomain.lan:
+    #     kube01.localdomain.lan:
+    #     kube02.localdomain.lan:
