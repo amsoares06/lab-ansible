@@ -1,5 +1,9 @@
 ---
 # Install ZSH, Powerlevel10k
+# Recommended fonts:
+#   terminal: MesloLGS Nerd Font
+#   VSCode: Jet brains Mono
+#   (use Powerline or Nerd Fonts)
 
 - name: intall zsh and powerlevel10k
   block:
