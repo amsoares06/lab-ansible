@@ -1,0 +1,54 @@
+---
+- name: install lvm2
+  ansible.builtin.dnf:
+    name: lvm2
+    state: present
+
+- name: create /data
+  block:
+    - name: create vgdata
+      community.general.lvg:
+        vg: vgdata
+        pvs: "{{ pvs }}"
+
+    - name: create lvdata
+      community.general.lvol:
+        vg: vgdata
+        lv: lvdata
+        size: 100%PVS
+        resizefs: true
+
+    - name: create filesystem
+      community.general.filesystem:
+        fstype: ext4
+        dev: /dev/vgdata/lvdata
+
+    - name: mount /data
+      ansible.posix.mount:
+        path: /data
+        src: /dev/vgdata/lvdata
+        fstype: ext4
+        opts: defaults
+        state: mounted
+
+    - name: change ownership of mount point
+      ansible.builtin.file:
+        path: /data
+        state: directory
+        owner: amsoares
+        group: docker
+        mode: 0755
+  when: pvs is defined
+
+- name: install nfs-utils
+  ansible.builtin.dnf:
+    name: nfs-utils
+    state: present
+
+- name: Mount an NFS volume
+  ansible.posix.mount:
+    src: rpi-nas:/media
+    path: /media
+    fstype: nfs
+    opts: rw,async,hard
+    state: mounted
