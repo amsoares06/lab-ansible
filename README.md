@@ -8,6 +8,9 @@ A series of playbooks to help me to automate things
 This requires ansible collection `ansible.posix` as described in `requirements.yml`
 Install w/ `ansible-galaxy collection install -r requirements.yml`
 
+### tip:
+  run `ansible all -m ping` when adding a new host in the inventory file to add the remote host id to known_hosts
+
 ---
 ## Roles included and usage
 ### chrony

@@ -6,10 +6,11 @@
   roles:
     - base
 
-# bridge
+# dev
 - hosts: dev.localdomain.lan
   become: yes
   roles:
+    - docker # to be able to use docker context
     - dev
   tags: dev
 

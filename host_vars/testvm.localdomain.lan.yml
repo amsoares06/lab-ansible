@@ -1,7 +1,4 @@
 ---
-pkgs2install:
-  - git
-
 # Create vgdata on these pvs
 pvs: [ /dev/sdb ]
 

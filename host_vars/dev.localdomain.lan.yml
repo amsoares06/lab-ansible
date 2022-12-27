@@ -5,7 +5,13 @@ pkgs2install:
   - ansible
   - packer
   - terraform
+  - jq
+  - bind-utils
 
 # Users to install and configure Powerlevel10k
 powerlevel10k_user:
   - amsoares
+
+dockerusers:
+  - amsoares
+  - packer

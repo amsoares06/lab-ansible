@@ -1,0 +1,19 @@
+---
+# configure docker context
+# see if I can create and pupulate ssh pubkyes with 'delegate_to'
+
+- name: configure docker context
+  block:
+    # checks if docker context is configured
+    - name: check if docker context is configured
+      ansible.builtin.shell: |
+        docker context inspect remote
+      become_user: amsoares
+
+  rescue:
+    # in case it is not configured, cofigure it
+    - name: configure docker context
+      ansible.builtin.shell: |
+        docker context create remote --docker "host=ssh://amsoares@docker.localdomain.lan"
+        docker context use remote
+      become_user: amsoares

@@ -1,0 +1,3 @@
+---
+# do not mount media NFS by default
+mount_nfs_media: false

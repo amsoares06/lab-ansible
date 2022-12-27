@@ -9,8 +9,4 @@ all:
     dockerhosts:
       hosts:
         docker.localdomain.lan:
-    # kubernetes:
-    #   hosts:
-    #     kube00.localdomain.lan:
-    #     kube01.localdomain.lan:
-    #     kube02.localdomain.lan:
+        testvm.localdomain.lan:
