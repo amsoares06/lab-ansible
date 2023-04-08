@@ -1,0 +1,7 @@
+---
+- import_tasks: install.yml
+- import_tasks: configure.yml
+
+# - name: hello world
+#   ansible.builtin.debug:
+#     msg: hello from {{ inventory_hostname }}

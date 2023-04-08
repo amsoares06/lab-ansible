@@ -1,0 +1,9 @@
+---
+- name: apply samba configuration
+  ansible.builtin.template:
+    src: smb.conf.j2
+    dest: /etc/samba/smb.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart samba

@@ -1,0 +1,10 @@
+---
+- name: install samba packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - samba
+    - samba-common
+    - samba-client
+  notify: restart samba

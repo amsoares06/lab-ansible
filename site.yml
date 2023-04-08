@@ -27,3 +27,10 @@
   become: yes
   roles:
     - reverse-proxy
+
+# samba
+- hosts: sambahosts
+  become: yes
+  roles:
+    - samba
+  tags: test

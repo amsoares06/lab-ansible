@@ -10,3 +10,6 @@ all:
       hosts:
         docker.localdomain.lan:
         testvm.localdomain.lan:
+    sambahosts:
+      hosts:
+        testvm.localdomain.lan:

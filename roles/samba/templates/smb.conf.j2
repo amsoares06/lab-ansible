@@ -1,0 +1,16 @@
+[global]
+workgroup = WORKGROUP
+server string = Samba Server %v
+netbios name = {{ ansible_hostname }}
+security = user
+map to guest = bad user
+dns proxy = no
+ntlm auth = true
+
+
+[Public]
+path =  /data
+browsable = yes
+writable = yes
+guest ok = yes
+read only = no
