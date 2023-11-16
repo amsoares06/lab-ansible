@@ -2,9 +2,18 @@
 - hosts: all
   become: yes
   gather_facts: yes
-  tasks:
 
-    - name: update all packages
-      ansible.builtin.dnf:
-        name: '*'
-        state: latest
+  tasks:
+    - name: update and reboot
+      block:
+        - name: update all packages
+          ansible.builtin.dnf:
+            name: '*'
+            state: latest
+          notify: reboot vm
+      when: ansible_hostname != 'dev'
+
+  handlers:
+    - name: reboot vm
+      ansible.builtin.reboot:
+        reboot_timeout: 600
