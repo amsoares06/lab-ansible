@@ -9,4 +9,3 @@ all:
     dockerhosts:
       hosts:
         docker.localdomain.lan:
-        testvm.localdomain.lan:
