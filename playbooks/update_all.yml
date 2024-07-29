@@ -1,7 +1,8 @@
 ---
-- hosts: all
+- hosts: all, !dev
   become: yes
   gather_facts: yes
+  serial: 1
 
   tasks:
     - name: update and reboot
@@ -11,7 +12,6 @@
             name: '*'
             state: latest
           notify: reboot vm
-      when: ansible_hostname != 'dev'
 
   handlers:
     - name: reboot vm
